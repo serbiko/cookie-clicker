@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Stripes with Light</title>
+    <style>
+        body {
+            background-color: #1E3A67;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .cookie-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .cookie {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background: url('cookie.png') no-repeat center center;
+            background-size: contain;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Listras com ângulos e tamanhos diferentes */
+        .listra {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: 50% 50%; /* Gira ao redor do centro do cookie */
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Listras pretas - anti-horário */
+        .listra1 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 20deg, transparent 20deg 360deg);
+            width: 300px;
+            height: 300px;
+            animation: rotate-counterclockwise1 15s linear infinite;
+        }
+
+        .listra2 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 10deg, transparent 10deg 360deg);
+            width: 350px;
+            height: 350px;
+            animation: rotate-counterclockwise2 15s linear infinite;
+        }
+
+        .listra3 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 20deg, transparent 20deg 360deg);
+            width: 300px;
+            height: 300px;
+            animation: rotate-counterclockwise3 15s linear infinite;
+        }
+
+        .listra4 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 10deg, transparent 10deg 360deg);
+            width: 320px;
+            height: 320px;
+            animation: rotate-counterclockwise4 15s linear infinite;
+        }
+
+        .listra5 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 20deg, transparent 20deg 360deg);
+            width: 350px;
+            height: 350px;
+            animation: rotate-counterclockwise5 15s linear infinite;
+        }
+
+        .listra6 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 10deg, transparent 10deg 360deg);
+            width: 320px;
+            height: 320px;
+            animation: rotate-counterclockwise6 15s linear infinite;
+        }
+
+        /* Listras brancas - horário */
+        .listra7 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 20deg, transparent 20deg 360deg);
+            width: 320px;
+            height: 320px;
+            animation: rotate-clockwise7 15s linear infinite;
+        }
+
+        .listra8 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 10deg, transparent 10deg 360deg);
+            width: 330px;
+            height: 330px;
+            animation: rotate-clockwise8 15s linear infinite;
+        }
+
+        .listra9 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 20deg, transparent 20deg 360deg);
+            width: 340px;
+            height: 340px;
+            animation: rotate-clockwise9 15s linear infinite;
+        }
+
+        .listra10 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 10deg, transparent 10deg 360deg);
+            width: 350px;
+            height: 350px;
+            animation: rotate-clockwise10 15s linear infinite;
+        }
+
+        .listra11 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 20deg, transparent 20deg 360deg);
+            width: 360px;
+            height: 360px;
+            animation: rotate-clockwise11 15s linear infinite;
+        }
+
+        .listra12 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 10deg, transparent 10deg 360deg);
+            width: 370px;
+            height: 370px;
+            animation: rotate-clockwise12 15s linear infinite;
+        }
+
+        .listra13 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 20deg, transparent 20deg 360deg);
+            width: 300px;
+            height: 300px;
+            animation: rotate-counterclockwise1 15s linear infinite;
+        }
+
+        .listra14 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 10deg, transparent 10deg 360deg);
+            width: 350px;
+            height: 350px;
+            animation: rotate-counterclockwise2 15s linear infinite;
+        }
+
+        .listra15 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 20deg, transparent 20deg 360deg);
+            width: 300px;
+            height: 300px;
+            animation: rotate-counterclockwise3 15s linear infinite;
+        }
+
+        .listra16 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 10deg, transparent 10deg 360deg);
+            width: 320px;
+            height: 320px;
+            animation: rotate-counterclockwise4 15s linear infinite;
+        }
+
+        .listra17 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 20deg, transparent 20deg 360deg);
+            width: 350px;
+            height: 350px;
+            animation: rotate-counterclockwise5 15s linear infinite;
+        }
+
+        .listra18 {
+            background: conic-gradient(rgba(255, 255, 255, 0.2) 0deg 10deg, transparent 10deg 360deg);
+            width: 320px;
+            height: 320px;
+            animation: rotate-counterclockwise6 15s linear infinite;
+        }
+
+        /* Listras brancas - horário */
+        .listra19 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 20deg, transparent 20deg 360deg);
+            width: 320px;
+            height: 320px;
+            animation: rotate-clockwise7 15s linear infinite;
+        }
+
+        .listra20 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 10deg, transparent 10deg 360deg);
+            width: 330px;
+            height: 330px;
+            animation: rotate-clockwise8 15s linear infinite;
+        }
+
+        .listra21 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 20deg, transparent 20deg 360deg);
+            width: 340px;
+            height: 340px;
+            animation: rotate-clockwise9 15s linear infinite;
+        }
+
+        .listra22 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 10deg, transparent 10deg 360deg);
+            width: 350px;
+            height: 350px;
+            animation: rotate-clockwise10 15s linear infinite;
+        }
+
+        .listra23 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 20deg, transparent 20deg 360deg);
+            width: 360px;
+            height: 360px;
+            animation: rotate-clockwise11 15s linear infinite;
+        }
+
+        .listra24 {
+            background: conic-gradient(rgba(255, 255, 255, 0.5) 0deg 10deg, transparent 10deg 360deg);
+            width: 370px;
+            height: 370px;
+            animation: rotate-clockwise12 15s linear infinite;
+        }
+
+        /* Animações específicas para cada listra preta */
+        @keyframes rotate-counterclockwise1 {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        @keyframes rotate-counterclockwise2 {
+            from { transform: translate(-50%, -50%) rotate(40deg); }
+            to { transform: translate(-50%, -50%) rotate(-300deg); }
+        }
+        @keyframes rotate-counterclockwise3 {
+            from { transform: translate(-50%, -50%) rotate(60deg); }
+            to { transform: translate(-50%, -50%) rotate(-240deg); }
+        }
+        @keyframes rotate-counterclockwise4 {
+            from { transform: translate(-50%, -50%) rotate(100deg); }
+            to { transform: translate(-50%, -50%) rotate(-180deg); }
+        }
+        @keyframes rotate-counterclockwise5 {
+            from { transform: translate(-50%, -50%) rotate(120deg); }
+            to { transform: translate(-50%, -50%) rotate(-120deg); }
+        }
+        @keyframes rotate-counterclockwise6 {
+            from { transform: translate(-50%, -50%) rotate(160deg); }
+            to { transform: translate(-50%, -50%) rotate(-60deg); }
+        }
+        @keyframes rotate-counterclockwise13 {
+            from { transform: translate(-50%, -50%) rotate(180deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        @keyframes rotate-counterclockwise14 {
+            from { transform: translate(-50%, -50%) rotate(220deg); }
+            to { transform: translate(-50%, -50%) rotate(-300deg); }
+        }
+        @keyframes rotate-counterclockwise15 {
+            from { transform: translate(-50%, -50%) rotate(240deg); }
+            to { transform: translate(-50%, -50%) rotate(-240deg); }
+        }
+        @keyframes rotate-counterclockwise16 {
+            from { transform: translate(-50%, -50%) rotate(260deg); }
+            to { transform: translate(-50%, -50%) rotate(-180deg); }
+        }
+        @keyframes rotate-counterclockwise17 {
+            from { transform: translate(-50%, -50%) rotate(300deg); }
+            to { transform: translate(-50%, -50%) rotate(-120deg); }
+        }
+        @keyframes rotate-counterclockwise18 {
+            from { transform: translate(-50%, -50%) rotate(320deg); }
+            to { transform: translate(-50%, -50%) rotate(-60deg); }
+        }
+
+        /* Animações específicas para cada listra branca */
+        @keyframes rotate-clockwise7 {
+            from { transform: translate(-50%, -50%) rotate(20deg); }
+            to { transform: translate(-50%, -50%) rotate(390deg); }
+        }
+        @keyframes rotate-clockwise8 {
+            from { transform: translate(-50%, -50%) rotate(50deg); }
+            to { transform: translate(-50%, -50%) rotate(450deg); }
+        }
+        @keyframes rotate-clockwise9 {
+            from { transform: translate(-50%, -50%) rotate(80deg); }
+            to { transform: translate(-50%, -50%) rotate(510deg); }
+        }
+        @keyframes rotate-clockwise10 {
+            from { transform: translate(-50%, -50%) rotate(110deg); }
+            to { transform: translate(-50%, -50%) rotate(570deg); }
+        }
+        @keyframes rotate-clockwise11 {
+            from { transform: translate(-50%, -50%) rotate(140deg); }
+            to { transform: translate(-50%, -50%) rotate(630deg); }
+        }
+        @keyframes rotate-clockwise12 {
+            from { transform: translate(-50%, -50%) rotate(170deg); }
+            to { transform: translate(-50%, -50%) rotate(690deg); }
+        }
+        @keyframes rotate-counterclockwise19 {
+            from { transform: translate(-50%, -50%) rotate(200deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+        @keyframes rotate-counterclockwise20 {
+            from { transform: translate(-50%, -50%) rotate(230deg); }
+            to { transform: translate(-50%, -50%) rotate(-300deg); }
+        }
+        @keyframes rotate-counterclockwise21 {
+            from { transform: translate(-50%, -50%) rotate(260deg); }
+            to { transform: translate(-50%, -50%) rotate(-240deg); }
+        }
+        @keyframes rotate-counterclockwise22 {
+            from { transform: translate(-50%, -50%) rotate(290deg); }
+            to { transform: translate(-50%, -50%) rotate(-180deg); }
+        }
+        @keyframes rotate-counterclockwise23 {
+            from { transform: translate(-50%, -50%) rotate(3200deg); }
+            to { transform: translate(-50%, -50%) rotate(-120deg); }
+        }
+        @keyframes rotate-counterclockwise24 {
+            from { transform: translate(-50%, -50%) rotate(350deg); }
+            to { transform: translate(-50%, -50%) rotate(-60deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="cookie-container">
+        <div class="cookie"></div>
+
+        <!-- Listras pretas -->
+        <div class="listra listra1"></div>
+        <div class="listra listra2"></div>
+        <div class="listra listra3"></div>
+        <div class="listra listra4"></div>
+        <div class="listra listra5"></div>
+        <div class="listra listra6"></div>
+        <div class="listra listra13"></div>
+        <div class="listra listra14"></div>
+        <div class="listra listra15"></div>
+        <div class="listra listra16"></div>
+        <div class="listra listra17"></div>
+        <div class="listra listra18"></div>
+
+        <!-- Listras brancas -->
+        <div class="listra listra7"></div>
+        <div class="listra listra8"></div>
+        <div class="listra listra9"></div>
+        <div class="listra listra10"></div>
+        <div class="listra listra11"></div>
+        <div class="listra listra12"></div>
+        <div class="listra listra19"></div>
+        <div class="listra listra20"></div>
+        <div class="listra listra21"></div>
+        <div class="listra listra22"></div>
+        <div class="listra listra23"></div>
+        <div class="listra listra24"></div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Stripes with Light</title>
+    <style>
+        body {
+            background-color: #1E3A67;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .cookie-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .cookie {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background: url('cookie.png') no-repeat center center;
+            background-size: contain;
+            border-radius: 50%;
+            z-index: 1; /* Certificando-se de que o cookie fique na frente */
+        }
+
+        /* Luz saindo de trás do cookie */
+        .light {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(
+                circle, 
+                rgba(255, 255, 255, 0.8) 0%,    
+                rgba(255, 255, 255, 0.4) 30%,   
+                rgba(255, 255, 255, 0.1) 60%,   
+                transparent 100%
+            );
+            border-radius: 50%;
+            z-index: -3; /* Luz atrás dos traçados */
+        }
+
+        /* Listras invisíveis - girando no sentido anti-horário */
+        .cookie-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            background: conic-gradient(
+                from 0deg,
+                rgba(0, 0, 0, 0) 0deg 25deg,     /* Invisível */
+                rgba(0, 0, 0, 0.05) 25deg 50deg, /* Sombra clara fina */
+                rgba(0, 0, 0, 0) 50deg 75deg,    /* Invisível */
+                rgba(0, 0, 0, 0.1) 75deg 100deg,  /* Sombra escura média */
+                rgba(0, 0, 0, 0) 100deg 125deg,  /* Invisível */
+                rgba(0, 0, 0, 0.15) 125deg 150deg, /* Sombra escura grossa */
+                rgba(0, 0, 0, 0) 150deg 175deg,  /* Invisível */
+                rgba(0, 0, 0, 0.05) 175deg 200deg, /* Sombra clara fina */
+                rgba(0, 0, 0, 0) 200deg 225deg,  /* Invisível */
+                rgba(0, 0, 0, 0.1) 225deg 250deg, /* Sombra escura média */
+                rgba(0, 0, 0, 0) 250deg 275deg,  /* Invisível */
+                rgba(0, 0, 0, 0.15) 275deg 300deg, /* Sombra escura grossa */
+                rgba(0, 0, 0, 0) 300deg 325deg,  /* Invisível */
+                rgba(0, 0, 0, 0.05) 325deg 350deg /* Sombra clara fina */
+            );
+            border-radius: 50%;
+            z-index: -2; /* Girando as listras invisíveis atrás */
+            animation: rotate-counterclockwise 16s linear infinite;
+        }
+
+        /* Listras visíveis - girando no sentido horário */
+        .cookie-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            background: conic-gradient(
+                from 0deg,
+                rgba(0, 0, 0, 0.1) 0deg 25deg,    /* Sombra escura fina */
+                rgba(0, 0, 0, 0) 25deg 50deg,     /* Invisível */
+                rgba(0, 0, 0, 0.15) 50deg 75deg,  /* Sombra escura grossa */
+                rgba(0, 0, 0, 0) 75deg 100deg,     /* Invisível */
+                rgba(0, 0, 0, 0.1) 100deg 125deg,  /* Sombra escura média */
+                rgba(0, 0, 0, 0) 125deg 150deg,    /* Invisível */
+                rgba(0, 0, 0, 0.2) 150deg 175deg,  /* Sombra escura grossa */
+                rgba(0, 0, 0, 0) 175deg 200deg,    /* Invisível */
+                rgba(0, 0, 0, 0.15) 200deg 225deg, /* Sombra escura intermediária */
+                rgba(0, 0, 0, 0) 225deg 250deg,    /* Invisível */
+                rgba(0, 0, 0, 0.1) 250deg 275deg,  /* Sombra escura fina */
+                rgba(0, 0, 0, 0) 275deg 300deg,    /* Invisível */
+                rgba(0, 0, 0, 0.15) 300deg 325deg, /* Sombra escura intermediária */
+                rgba(0, 0, 0, 0) 325deg 350deg     /* Invisível */
+            );
+            border-radius: 50%;
+            z-index: -1; /* Traçados de sombreamento ficam atrás do cookie */
+            animation: rotate-clockwise 20s linear infinite;
+        }
+
+        /* Animação no sentido horário */
+        @keyframes rotate-clockwise {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Animação no sentido anti-horário */
+        @keyframes rotate-counterclockwise {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(-360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="cookie-container">
+        <div class="cookie"></div>
+        <div class="light"></div>
+    </div>
+
+</body>
+</html>
